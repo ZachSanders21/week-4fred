@@ -25,11 +25,11 @@ jobs:
   pack: 
     runs-on: ubuntu-20.04
     env:
-      DOCKER_TOKEN: $ {{ secrets.DOCKER_TOKEN }}
-      DOCKER_USER: ${{ secrets.DOCKER_USER}}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
     steps:
       - uses: actions/checkout@v2
-      - run: echo $DOCKER_TOKEN  | docker login -u $DOCKER_USER --password-stdin
+      - run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
       - run: docker image build -f dockerfile -t newdocker .
         working-directory: ../
       - run: docker image tag newdocker zachsanders/newdocker
