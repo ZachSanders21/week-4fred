@@ -24,7 +24,7 @@ jobs:
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     steps:
-      - uses: action/checkout@v2
+      - uses: actions/checkout@v2
       - run: dotnet tool install --global dotnet-sonarscanner
       - run: |
           dotnet sonarscanner begin /k:'ZachSanders21_week-4fred' /o:'ZachSanders21' /d: sonar.login=$SONAR_TOKEN
@@ -36,6 +36,7 @@ jobs:
     needs: 
       - build
       - test
+      - analyze
     runs-on: ubuntu-20.04
     env:
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
