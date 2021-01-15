@@ -23,11 +23,12 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      GITHUB_TOKEN: ${{ secrest.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - run: dotnet tool install --global dotnet-sonarscanner
       - run: |
-          dotnet sonarscanner begin /k:'ZachSanders21_week-4fred' /o:'ZachSanders21' /d:sonar.host.url='https://sonarcloud.io/' /d: sonar.login=$SONAR_TOKEN 
+          dotnet sonarscanner begin /k:'ZachSanders21_week-4fred' /o:'ZachSanders21' /d:sonar.host.url='https://sonarcloud.io/' /d: sonar.login=$SONAR_TOKEN
           dotnet build
           dotnet test
           dotnet sonarscanner end /d: sonar.login=$SONAR_TOKEN
